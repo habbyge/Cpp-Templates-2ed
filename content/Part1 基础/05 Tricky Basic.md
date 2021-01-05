@@ -372,21 +372,22 @@ Stack<T>& Stack<T>::operator=(const Stack<U>& rhs)
 * 为了获取用来赋值的源对象所有成员的访问权限，可以把其他的stack实例声明为友元
 
 ```cpp
-template<typename T>
+template <typename T>
 class Stack {
  private:
   std::deque<T> v;
- public:
-    void push(const T&);
-    void pop();
-  const T& top() const;
-    bool empty() const { return v.empty(); }
 
-    template<typename U>
+ public:
+  void push(const T&);
+  void pop();
+  const T& top() const;
+  bool empty() const { return v.empty(); }
+
+  template <typename U>
   Stack& operator=(const Stack<U>&);
 
-    // 声明友元以允许Stack<U>访问Stack<T>的私有成员
-    template<typename> // U没被使用所以这里省略
+  // 声明友元以允许Stack<U>访问Stack<T>的私有成员
+  template <typename>  // U没被使用所以这里省略
   friend class Stack;
 };
 ```
